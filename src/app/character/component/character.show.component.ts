@@ -11,14 +11,20 @@ import { ICharacterDto } from '../dto/character.dto';
 })
 export class CharacterShowComponent {
   @Input() character?: ICharacterDto;
+  @Input() small: boolean = false;
+  @Input() forceShow: boolean = false;
 
   show: boolean = false;
 
   title = 'dc-gacha';
 
   ngOnInit() {
-    setTimeout(() => {
+    if (this.forceShow) {
       this.show = true;
-    }, 1000);
+    } else {
+      setTimeout(() => {
+        this.show = true;
+      }, 1000);
+    }
   }
 }

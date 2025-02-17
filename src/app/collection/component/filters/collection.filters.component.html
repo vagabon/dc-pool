@@ -1,0 +1,11 @@
+<a routerLink="/collection" [routerLinkActive]="type === '' ? 'active' : ''">
+  Nb : {{ collections.length }} / {{ characterService.characters().length }}
+</a>
+<a
+  *ngFor="let rarity of rarities"
+  routerLink="/collection/{{ rarity }}"
+  [routerLinkActive]="type === rarity ? 'active' : ''"
+>
+  nb{{ rarity }} : {{ getNbRarity(rarity) }} /
+  {{ characterService.countByRarity(rarity) }}
+</a>

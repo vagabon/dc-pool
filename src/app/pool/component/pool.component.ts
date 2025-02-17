@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { CharacterShowComponent } from '../../character/component/character.show.component';
 import { ICharacterDto } from '../../character/dto/character.dto';
-import { CharacterService } from '../../character/service/character.service';
+import { PoolService } from '../service/pool.service';
 
 @Component({
   selector: 'app-pool',
@@ -12,11 +12,25 @@ import { CharacterService } from '../../character/service/character.service';
   styleUrl: './pool.component.scss',
 })
 export class PoolComponent {
-  characterService = inject(CharacterService);
+  poolService = inject(PoolService);
 
   characters: ICharacterDto[] = [];
 
+  isPooling = false;
+
+  constructor() {
+    effect(() => {
+      this.characters = this.poolService.characters();
+    });
+  }
+
   doPool() {
-    this.characters = this.characterService.pool();
+    this.isPooling = true;
+    setTimeout(() => {
+      this.poolService.doPool();
+    }, 100);
+    setTimeout(() => {
+      this.isPooling = false;
+    }, 1500);
   }
 }

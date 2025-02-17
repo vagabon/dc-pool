@@ -1,8 +1,19 @@
 <div class="app-pool">
-    <div class="app-pool-content">
-        <app-character-show *ngFor="let character of characters" [character]="character"></app-character-show>
+  <div class="app-pool-content">
+    <app-character-show
+      *ngFor="let character of characters"
+      [character]="character"
+    ></app-character-show>
+  </div>
+  <div class="flex flex-column gap5">
+    <div class="flex gap5">
+      <div>Nb : {{ poolService.pool.count }}</div>
+      <div>NbB : {{ poolService.pool.nbB }}</div>
+      <div>NbA : {{ poolService.pool.nbA }}</div>
+      <div>NbS : {{ poolService.pool.nbS }}</div>
+      <div>NbSS : {{ poolService.pool.nbSS }}</div>
+      <div>NbSSS : {{ poolService.pool.nbSSS }}</div>
     </div>
-    <div>
-        <button (click)="doPool()">Pool !</button>
-    </div>
+    <button (click)="doPool()" [disabled]="isPooling">Pool !</button>
+  </div>
 </div>
