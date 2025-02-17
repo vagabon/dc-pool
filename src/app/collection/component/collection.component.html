@@ -1,13 +1,6 @@
 <h1>Collection</h1>
-<app-collection-filter
-  [collections]="collections"
-  [type]="type"
-></app-collection-filter>
+<app-collection-filter [collections]="collections" [type]="type"></app-collection-filter>
 <div class="app-collection">
-  <app-character-show
-    *ngFor="let collection of collectionSorted"
-    [character]="collection.character"
-    [forceShow]="true"
-    [small]="true"
-  ></app-character-show>
+  <app-character-show *ngFor="let collection of collectionSorted" [character]="collection.character" [forceShow]="true"
+    [small]="true"></app-character-show>
 </div>

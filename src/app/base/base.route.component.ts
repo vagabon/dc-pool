@@ -10,9 +10,9 @@ export abstract class BaseRouteComponent implements OnInit {
 
   ngOnInit() {
     this.routeObservable = this.route.params.subscribe((params) => {
-      this.nbOnInitAfter(params);
+      this.ngOnInitAfter(params);
     });
   }
 
-  protected abstract nbOnInitAfter(params: Params): void;
+  protected abstract ngOnInitAfter(params: Params): void;
 }

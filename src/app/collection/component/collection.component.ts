@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, effect, inject } from '@angular/core';
 import { Params } from '@angular/router';
 import { BaseRouteComponent } from '../../base/base.route.component';
 import { CharacterShowComponent } from '../../character/component/character.show.component';
@@ -18,6 +18,7 @@ import { CollectionFiltersComponent } from './filters/collection.filters.compone
 export class CollectionComponent extends BaseRouteComponent {
   collectionService = inject(CollectionService);
   characterService = inject(CharacterService);
+  cdr = inject(ChangeDetectorRef);
 
   collections: ICollectionDto[] = [];
   collectionSorted: ICollectionDto[] = [];
@@ -41,11 +42,12 @@ export class CollectionComponent extends BaseRouteComponent {
             };
           });
         this.collectionSorted = this.getSortCollections(this.type);
+        this.cdr.detectChanges();
       }
     });
   }
 
-  nbOnInitAfter(params: Params) {
+  ngOnInitAfter(params: Params) {
     this.type = params['type'] ?? '';
     this.collectionSorted = this.getSortCollections(this.type);
   }

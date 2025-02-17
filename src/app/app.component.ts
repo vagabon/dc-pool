@@ -5,6 +5,7 @@ import { CharacterService } from './character/service/character.service';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, RouterModule],
+  standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

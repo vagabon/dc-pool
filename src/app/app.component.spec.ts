@@ -1,13 +1,30 @@
-import { provideHttpClient } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
+import {
+  ApplicationConfig,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { AppComponent } from './app.component';
-import { appConfig } from './app.config';
+import { routes } from './app.routes';
+
+export const appConfigTest: ApplicationConfig = {
+  providers: [
+    provideHttpClient(withFetch(), withInterceptors([])),
+    provideRouter(routes),
+    provideExperimentalZonelessChangeDetection(),
+  ],
+};
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [provideHttpClient(), ...appConfig.providers],
+      providers: [...appConfigTest.providers],
     }).compileComponents();
   });
 
@@ -15,20 +32,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have the 'dc-gacha' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    // expect(app.title).toEqual('dc-gacha');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    // expect(compiled.querySelector('h1')?.textContent).toContain(
-    //   'Hello, dc-gacha'
-    // );
   });
 });

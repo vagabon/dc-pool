@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, effect, inject } from '@angular/core';
 import { CharacterShowComponent } from '../../character/component/character.show.component';
 import { ICharacterDto } from '../../character/dto/character.dto';
 import { PoolService } from '../service/pool.service';
@@ -13,6 +13,7 @@ import { PoolService } from '../service/pool.service';
 })
 export class PoolComponent {
   poolService = inject(PoolService);
+  cdr = inject(ChangeDetectorRef);
 
   characters: ICharacterDto[] = [];
 
@@ -21,16 +22,17 @@ export class PoolComponent {
   constructor() {
     effect(() => {
       this.characters = this.poolService.characters();
+      this.cdr?.detectChanges();
     });
   }
 
   doPool() {
     this.isPooling = true;
-    setTimeout(() => {
-      this.poolService.doPool();
-    }, 100);
+    this.poolService.doPool();
+    this.cdr?.detectChanges();
     setTimeout(() => {
       this.isPooling = false;
+      this.cdr?.detectChanges();
     }, 1500);
   }
 }

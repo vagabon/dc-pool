@@ -1,6 +1,5 @@
-import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { appConfig } from '../../app.config';
+import { appConfigTest } from '../../app.component.spec';
 import { CollectionComponent } from './collection.component';
 
 describe('CollectionComponent', () => {
@@ -11,7 +10,7 @@ describe('CollectionComponent', () => {
     );
     await TestBed.configureTestingModule({
       imports: [CollectionComponent],
-      providers: [provideHttpClient(), ...appConfig.providers],
+      providers: [...appConfigTest.providers],
     }).compileComponents();
   });
 
@@ -19,9 +18,8 @@ describe('CollectionComponent', () => {
     const fixture = TestBed.createComponent(CollectionComponent);
     const app = fixture.componentInstance;
     app.characterService.load();
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    fixture.detectChanges();
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    fixture.whenStable();
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     expect(app).toBeTruthy();
   });
 });

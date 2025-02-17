@@ -1,6 +1,5 @@
-import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideClientHydration } from '@angular/platform-browser';
+import { appConfigTest } from '../../app.component.spec';
 import { CharacterShowComponent } from './character.show.component';
 
 describe('CharacterShowComponent', () => {
@@ -10,7 +9,7 @@ describe('CharacterShowComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CharacterShowComponent],
-      providers: [provideHttpClient(), provideClientHydration()],
+      providers: [...appConfigTest.providers],
     }).compileComponents();
     fixture = TestBed.createComponent(CharacterShowComponent);
     component = fixture.componentInstance;
@@ -18,13 +17,13 @@ describe('CharacterShowComponent', () => {
 
   it('should show the character', async () => {
     component.forceShow = true;
-    fixture.detectChanges();
+    fixture.whenStable();
     expect(component).toBeTruthy();
   });
 
   it('should show the character with forceShow to false', async () => {
     component.forceShow = false;
-    fixture.detectChanges();
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    fixture.whenStable();
+    expect(component).toBeTruthy();
   });
 });

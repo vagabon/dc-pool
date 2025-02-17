@@ -1,9 +1,7 @@
 <div class="app-pool">
   <div class="app-pool-content">
-    <app-character-show
-      *ngFor="let character of characters"
-      [character]="character"
-    ></app-character-show>
+    <app-character-show *ngFor="let character of characters" [character]="character"
+      [forceShow]="!isPooling"></app-character-show>
   </div>
   <div class="flex flex-column gap5">
     <div class="flex gap5">
