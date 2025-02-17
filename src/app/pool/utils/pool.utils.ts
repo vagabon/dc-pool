@@ -13,6 +13,12 @@ export const newPool = (): IPoolDto => {
 };
 
 export const getRandom = (table: Array<string | number | {}>): number => {
-  const randomIndex = Math.floor(Math.random() * table.length);
+  const randomIndex = Math.floor(getSecureRandom(table.length));
   return randomIndex;
+};
+
+export const getSecureRandom = (number: number): number => {
+  const array = new Uint32Array(1);
+  window.crypto.getRandomValues(array);
+  return array[0] % number;
 };
