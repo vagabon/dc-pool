@@ -1,38 +1,43 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, effect, inject } from '@angular/core';
+import {
+  Component,
+  effect,
+  inject,
+  signal,
+  WritableSignal,
+} from '@angular/core';
+import { DsvButtonComponent } from '@ng-vagabond-lab/ng-dsv/ds/button';
 import { CharacterShowComponent } from '../../character/component/character.show.component';
 import { ICharacterDto } from '../../character/dto/character.dto';
 import { PoolService } from '../service/pool.service';
 
+const WAITING_BETWEEN_POOL = 1500;
+
 @Component({
   selector: 'app-pool',
-  imports: [CommonModule, CharacterShowComponent],
+  imports: [CommonModule, CharacterShowComponent, DsvButtonComponent],
   standalone: true,
   templateUrl: './pool.component.html',
   styleUrl: './pool.component.scss',
 })
 export class PoolComponent {
   poolService = inject(PoolService);
-  cdr = inject(ChangeDetectorRef);
 
   characters: ICharacterDto[] = [];
 
-  isPooling = false;
+  isPooling: WritableSignal<boolean> = signal(false);
 
   constructor() {
     effect(() => {
       this.characters = this.poolService.characters();
-      this.cdr?.detectChanges();
     });
   }
 
-  doPool() {
-    this.isPooling = true;
+  doPool(): void {
+    this.isPooling.set(true);
     this.poolService.doPool();
-    this.cdr?.detectChanges();
     setTimeout(() => {
-      this.isPooling = false;
-      this.cdr?.detectChanges();
-    }, 1500);
+      this.isPooling.set(false);
+    }, WAITING_BETWEEN_POOL);
   }
 }

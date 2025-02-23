@@ -1,7 +1,10 @@
 <div class="app-pool">
   <div class="app-pool-content">
-    <app-character-show *ngFor="let character of characters" [character]="character"
-      [forceShow]="!isPooling"></app-character-show>
+    <app-character-show
+      *ngFor="let character of characters"
+      [character]="character"
+      [forceShow]="!isPooling()"
+    ></app-character-show>
   </div>
   <div class="flex flex-column gap5">
     <div class="flex gap5">
@@ -12,6 +15,8 @@
       <div>NbSS : {{ poolService.pool.nbSS }}</div>
       <div>NbSSS : {{ poolService.pool.nbSSS }}</div>
     </div>
-    <button (click)="doPool()" [disabled]="isPooling">Pool !</button>
+    <dsv-button (callback)="doPool()" [disabled]="isPooling()">
+      Pool !
+    </dsv-button>
   </div>
 </div>

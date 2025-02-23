@@ -1,7 +1,7 @@
 .character-show {
     position: relative; display: flex;
 
-    img { width: calc(100%); height: calc(100%); border: 4px solid #000000; }
+    img { width: calc(100%); height: calc(100%); border: 4px solid #000000; border-radius: 10px; }
     &.small img { border-width: 2px; }
     &.B img { border-color: #3434ff; }
     &.A img { border-color:  #c300ff; }
@@ -10,7 +10,8 @@
     &.SSS img { border-color:  #ffbb00; }
 
     .name {
-        position: absolute; background: black;
+        position: absolute; 
+        background: black;
         bottom: 10px;
         text-align: center;
         width: 90%;
@@ -20,21 +21,27 @@
     .fond { position: absolute; }
 
     .card-container {
-        width: 160px; height: 240px;
-        perspective: 1000px;
-        opacity: 1;
-        transition: opacity 0.5s ease-in-out;
+        width: 160px; 
+        height: 240px;
     }
-    &.small .card-container { width: 100px; height: 140px; }
+    &.small .card-container { 
+        width: 100px; 
+        height: 140px; 
+    }
 
     .card {
         width: 100%;
         height: 100%;
         position: relative;
         transform-style: preserve-3d;
-        transition: transform 0.5s ease-in-out;
+        transition: transform 1s ease-in-out;
         transform: rotateY(180deg);
+        border-radius: 10px;
     }
+    &.SS .card, &.SSS .card { transition: transform 2s ease-in-out; }
+    &.SS .card { box-shadow: 0px 0px 20px #ff1d1d; }
+    &.SSS .card { box-shadow: 0px 0px 20px #ffbb00; }
+    &.small .card { box-shadow: none; }
 
     .card-container.show .card {
         transform: rotateY(0deg);
@@ -51,6 +58,7 @@
         border-radius: 10px;
         font-size: 20px;
         font-weight: bold;
+        border-radius: 10px;
     }
 
     .front {

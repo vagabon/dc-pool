@@ -21,6 +21,8 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "preserveSymlinks": true,
+            "optimization": false,
             "inlineStyleLanguage": "scss",
             "assets": [
               {
@@ -54,6 +56,8 @@
               "outputHashing": "all"
             },
             "development": {
+              "budgets": [],
+              "preserveSymlinks": true,
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
@@ -64,7 +68,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "hmr": false
+            "poll": 2000
           },
           "configurations": {
             "production": {

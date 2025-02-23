@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal, WritableSignal } from '@angular/core';
 import { ICharacterDto } from '../dto/character.dto';
+
+const ANIMATION_WAITING = 500;
 
 @Component({
   selector: 'app-character-show',
@@ -14,17 +16,15 @@ export class CharacterShowComponent {
   @Input() small: boolean = false;
   @Input() forceShow: boolean = false;
 
-  show: boolean = false;
-
-  title = 'dc-gacha';
+  show: WritableSignal<boolean> = signal(false);
 
   ngOnInit() {
     if (this.forceShow) {
-      this.show = true;
+      this.show.set(true);
     } else {
       setTimeout(() => {
-        this.show = true;
-      }, 1000);
+        this.show.set(true);
+      }, ANIMATION_WAITING);
     }
   }
 }

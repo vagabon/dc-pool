@@ -1,13 +1,13 @@
 <div
   [class]="
     'character-show ' +
-    (show ? character?.rarity : '') +
+    (show() ? character?.rarity : '') +
     ' ' +
     (small ? 'small' : '')
   "
 >
   <img class="fond" src="fond_dc.png" alt="Fond Carte DC" *ngIf="!show" />
-  <div class="card-container" [class.show]="show">
+  <div class="card-container" [class.show]="show()">
     <div class="card">
       <div class="front">
         <img src="{{ character?.images?.sm }}" alt="character" />

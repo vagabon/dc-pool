@@ -1,14 +1,17 @@
-<main class="main">
-  <router-outlet />
-</main>
-<div class="menu">
-  <a
-    routerLink="/collection"
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page"
-    >Collection</a
-  >
-  <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"
-    >Pool</a
-  >
-</div>
+<dsv-theme [theme]="theme">
+  <main class="main">
+    <router-outlet />
+  </main>
+  <div class="menu">
+    <a
+      routerLink="/collection"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      Collection
+    </a>
+    <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">
+      Pool
+    </a>
+  </div>
+</dsv-theme>
