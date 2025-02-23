@@ -7,7 +7,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { Params } from '@angular/router';
-import { BaseRouteComponent } from '../../base/base.route.component';
+import { BaseRouteComponent } from '@ng-vagabond-lab/ng-dsv/base';
 import { CharacterShowComponent } from '../../character/component/character.show.component';
 import { CharacterService } from '../../character/service/character.service';
 import { ICollectionDto } from '../dto/collection.dto';
@@ -54,10 +54,6 @@ export class CollectionComponent extends BaseRouteComponent {
   ngOnInitAfter(params: Params) {
     this.type = params['type'] ?? '';
     this.collectionSorted.set(this.getSortCollections(this.type));
-  }
-
-  ngOnDestroy() {
-    this.routeObservable?.unsubscribe();
   }
 
   getSortCollections(type: string) {
