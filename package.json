@@ -2,7 +2,6 @@
   "name": "dc-gacha",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -26,6 +25,7 @@
     "@angular/router": "^19.1.7",
     "@angular/ssr": "^19.1.8",
     "express": "^4.21.2",
+    "remixicon": "^4.6.0",
     "rxjs": "~7.8.2",
     "tslib": "^2.8.1"
   },
@@ -33,7 +33,7 @@
     "@angular-devkit/build-angular": "^19.1.8",
     "@angular/cli": "^19.1.8",
     "@angular/compiler-cli": "^19.1.7",
-    "@ng-vagabond-lab/ng-dsv": "^0.0.6",
+    "@ng-vagabond-lab/ng-dsv": "^0.0.7",
     "@types/express": "^5.0.0",
     "@types/jasmine": "~5.1.7",
     "jasmine-core": "~5.6.0",

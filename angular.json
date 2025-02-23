@@ -21,16 +21,18 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "preserveSymlinks": true,
-            "optimization": false,
             "inlineStyleLanguage": "scss",
+            "preserveSymlinks": true,
             "assets": [
               {
                 "glob": "**/*",
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/remixicon/fonts/remixicon.css"
+            ],
             "scripts": [],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -56,8 +58,6 @@
               "outputHashing": "all"
             },
             "development": {
-              "budgets": [],
-              "preserveSymlinks": true,
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
@@ -67,9 +67,6 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "poll": 2000
-          },
           "configurations": {
             "production": {
               "buildTarget": "dc-gacha:build:production"
