@@ -1,15 +1,23 @@
-
 :host {
-    width: 100%; height: 100vh; display: flex; flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
     .main {
-        display: flex; flex: 1; overflow-y: hidden; background: #454545ad;
+        display: flex;
+        flex: 1;
+        overflow-y: hidden;
+        background: #454545ad;
     }
+
     .menu {
         min-height: 50px;
         display: flex;
         gap: 10px;
         justify-content: center;
         align-items: center;
+
         a {
             min-width: 100px;
             text-align: center;

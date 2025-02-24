@@ -1,8 +1,17 @@
 :host {
-    display: flex; gap: 5px; justify-content: center; align-items: center; margin: 5px 10px; flex-wrap: wrap;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 10px;
+    flex-wrap: wrap;
 
-    a { 
-        padding: 5px 10px; color: #d6d6d6;
-        &.active { background-color: #686868; }
+    a {
+        padding: 5px 10px;
+        color: #d6d6d6;
+
+        &.active {
+            background-color: #686868;
+        }
     }
 }
